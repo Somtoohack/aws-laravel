@@ -14,11 +14,12 @@ phases:
       - php composer-setup.php --install-dir=/usr/local/bin --filename=composer
   pre_build:
     commands:
-      - cp .env.example .env
+      - composer dump-autoload
       - composer install --no-interaction --no-progress --prefer-dist
+      - cp .env.example .env
       - npm install
       - mkdir -p storage/framework/views
-      - chmod -R 755 storage
+      - chmod -R 777 storage
       - echo Preparing storage directories...
       - mkdir -p /codebuild/output/src/$CODEBUILD_SRC_DIR/storage/framework/{sessions,views,cache}
       - mkdir -p /codebuild/output/src/$CODEBUILD_SRC_DIR/bootstrap/cache
