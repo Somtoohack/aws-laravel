@@ -19,6 +19,11 @@ phases:
       - npm install
       - mkdir -p storage/framework/views
       - chmod -R 755 storage
+      - echo Preparing storage directories...
+      - mkdir -p /codebuild/output/src/$CODEBUILD_SRC_DIR/storage/framework/{sessions,views,cache}
+      - mkdir -p /codebuild/output/src/$CODEBUILD_SRC_DIR/bootstrap/cache
+      - chmod -R 777 /codebuild/output/src/$CODEBUILD_SRC_DIR/storage
+      - chmod -R 777 /codebuild/output/src/$CODEBUILD_SRC_DIR/bootstrap/cache
   build:
     commands:
       - php artisan key:generate
