@@ -24,6 +24,13 @@ phases:
       - mkdir -p /codebuild/output/src/$CODEBUILD_SRC_DIR/bootstrap/cache
       - chmod -R 777 /codebuild/output/src/$CODEBUILD_SRC_DIR/storage
       - chmod -R 777 /codebuild/output/src/$CODEBUILD_SRC_DIR/bootstrap/cache
+  post_build:
+    commands:
+      - echo "Deployment phase ensuring directories and permissions..."
+      - mkdir -p /var/app/current/storage/framework/{sessions,views,cache}
+      - mkdir -p /var/app/current/bootstrap/cache
+      - chmod -R 777 /var/app/current/storage /var/app/current/bootstrap/cache
+
   build:
     commands:
       - php artisan key:generate
