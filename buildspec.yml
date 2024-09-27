@@ -17,6 +17,7 @@ phases:
       - cp .env.example .env
       - composer install --no-interaction --no-progress --prefer-dist
       - npm install
+      - mkdir -p storage/framework/views
       - chmod -R 755 storage
   build:
     commands:
