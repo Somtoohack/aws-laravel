@@ -40,7 +40,9 @@ phases:
 artifacts:
   files:
     - '**/*'
+    - storage/logs/*.log
+    - public/**/*
   name: $(date +%Y-%m-%d)
 proxy:
-  upload-artifacts: true
+  upload-artifacts: yes
   logs: yes
