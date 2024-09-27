@@ -14,6 +14,7 @@ phases:
       - php composer-setup.php --install-dir=/usr/local/bin --filename=composer
   pre_build:
     commands:
+      - cp .env.example .env
       - composer install --no-interaction --no-progress --prefer-dist
       - npm install
   build:
